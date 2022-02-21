@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Payment from '../views/Payment.vue'
 
 import ProductPage from '../views/ProductPage.vue'
+import SingleProduct from '../views/SingleProduct.vue'
 
 
 Vue.use(VueRouter)
@@ -15,12 +16,18 @@ const routes = [
     name: 'Home',
     component: Home
   },
-  {
+    {
+    path: '/SingleProduct',
+    name: 'SingleProduct',
+    component: SingleProduct
+  },
 
+  {
     path: '/payment',
     name: 'Payment',
     component: Payment
-
+  },
+  {
     path: '/ProductPage',
     name: 'ProductPage',
     component: ProductPage

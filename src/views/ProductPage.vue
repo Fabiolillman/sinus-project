@@ -115,9 +115,7 @@ select{
 margin-top: 1rem;
 
 }
-.top-text-wrap{
-    /* background: red; */
-}
+
 
 .top-text-wrap h2{
   font-size: 2.2rem;

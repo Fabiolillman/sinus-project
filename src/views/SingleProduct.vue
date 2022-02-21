@@ -1,15 +1,39 @@
 <template>
   <div>
       <h1>Single Product Page</h1>
-  </div>
+      <button @click="cartShow = !cartShow">X</button>
+
+      <Cart
+      v-if="cartShow"
+      />
+      </div>
 </template>
 
 <script>
+import Cart from '../components/Cart.vue'
 export default {
+   components: {
+    Cart,
+  },
+  data(){return{
+   cartShow:false
+  }},
 
+methods:{
+
+}
 }
 </script>
 
 <style>
-
+button{
+    align-self: center;
+    border-radius: 10px;
+    width: 16rem;
+    height: 3.7rem;
+    justify-self: end;
+    background: #478516;
+    color: white;
+    font-size: 1.87rem;
+}
 </style>

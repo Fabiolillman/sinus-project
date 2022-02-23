@@ -11,16 +11,15 @@
           <router-link to="/hoodies">Hoodies</router-link>
         </div>
         <div class="line-break"></div>
-        
       </header>
       <main class="single-product-main">
         <div class="product-image">
-          <p></p>
+          <img v-if="imagePath" :src="imagePath" alt="Product image">
         </div>
         <div class="aside-wrap">
           <aside class="filter-columns">
             <div class="product-main">
-              <h2>SINUS HOODIE</h2>
+              <h2 v-if="product">{{product.category}}</h2>
               <img src="@/assets/ICON-Cart.png" alt="cart">
             </div>
             <div class="star-layout">
@@ -45,15 +44,39 @@
           <aside class="product-list"></aside>
         </div>
       </main>
+      <Footer />
     </div>
   </div>
 </template>
 
 <script>
+
+import Footer from '@/components/Footer'
+
 export default {
+  components: {
+    Footer
+  },
   data() { return {
     colors: ["Grey","Blue","Purple","Red","Green"]
-  }}
+  }},
+  computed: {
+    product() {
+      return this.$store.state.currentProduct
+    },
+    imagePath() {
+      if (this.$store.state.currentProduct == null)
+        return null
+
+      return require('@/assets/'+this.$store.state.currentProduct.imgFile)
+    }
+  },
+  mounted: 
+    function () {
+      console.log("mounted")
+      this.$store.dispatch('fetchItemFromId', 87)
+      this.$store.dispatch('fetchItemsFromCategory', 'hoodie')
+    }
 };
 </script>
 
@@ -74,7 +97,7 @@ export default {
 .single-product-main {
   display: grid;
   grid-template-columns: 1fr 1fr; 
-   align-items: top;
+  align-items: top;
   justify-content: center;
   align-content: center;
 }
@@ -211,16 +234,16 @@ a:visited {
 
 .product-main {
   display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    min-width: 500px;
+  flex-direction: row;
+  justify-content: space-between;
+  min-width: 400px;
 }
 
 .star-layout {
-   display: flex;
-    flex-direction: row;
-    gap:5px;
-    margin: 0 0 50px 0;
+  display: flex;
+  flex-direction: row;
+  gap:5px;
+  margin: 0 0 50px 0;
 }
 
 </style>

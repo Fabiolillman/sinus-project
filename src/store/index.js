@@ -8,10 +8,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    
   },
   mutations: {
+    
   },
   actions: {
+
+    
         async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
       console.log(response)
@@ -46,6 +50,7 @@ export default new Vuex.Store({
     //   // context.commit('saveStuff', response)
     //   console.log(response)
   
+
   },
   modules: {
   }

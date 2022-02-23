@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
 import Payment from '../views/Payment.vue'
+import Checkout from '../views/Checkout.vue'
 
 import ProductPage from '../views/ProductPage.vue'
 import SingleProduct from '../views/SingleProduct.vue'
@@ -31,6 +32,11 @@ const routes = [
     path: '/payment',
     name: 'Payment',
     component: Payment
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
   },
   {
     path: '/ProductPage',

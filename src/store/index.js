@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import {getProductList} from '@/api'
-// import {getLogin} from '@/api'
-import * as API from '@/api'
+
 
 Vue.use(Vuex)
 
@@ -14,6 +12,9 @@ export default new Vuex.Store({
     
   },
   actions: {
+<<<<<<< HEAD
+    
+=======
 
     
         async login(context,credentials){
@@ -51,6 +52,7 @@ export default new Vuex.Store({
     //   console.log(response)
   
 
+>>>>>>> de33fce18db589d41950da60e2ac4aa74856dda6
   },
   modules: {
   }

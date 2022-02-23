@@ -6,6 +6,7 @@ import Payment from '../views/Payment.vue'
 
 import ProductPage from '../views/ProductPage.vue'
 import SingleProduct from '../views/SingleProduct.vue'
+import Cart from '../components/Cart.vue'
 
 
 Vue.use(VueRouter)
@@ -21,7 +22,11 @@ const routes = [
     name: 'SingleProduct',
     component: SingleProduct
   },
-
+  {
+    path: '/Cart',
+    name: 'Cart',
+    component: Cart
+  },
   {
     path: '/payment',
     name: 'Payment',

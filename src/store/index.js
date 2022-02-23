@@ -4,14 +4,19 @@ import Vuex from 'vuex'
 // import {getLogin} from '@/api'
 import * as API from '@/api'
 
+import * as API from  '@/api/index.js'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    currentProduct: null,
+    currentCategoryProducts: []
   },
   mutations: {
   },
   actions: {
+
         async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
       console.log(response)
@@ -47,6 +52,16 @@ export default new Vuex.Store({
     //   // context.commit('saveStuff', response)
     //   console.log(response)
   
+
+    async fetchItemFromId(context, itemId) {
+      const response = await API.getItemFromId(itemId)
+      this.state.currentProduct = response.data.post
+    },
+    async fetchItemsFromCategory(context, category) {
+      const response = await API.getItemsFromCategory(category)
+      console.log(response);
+    }
+
   },
   modules: {
   }

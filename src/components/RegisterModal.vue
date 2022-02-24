@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="modal-fade" >
+    
       <form action="" @submit.prevent="register">
          
           <label for="">Email</label>
@@ -21,6 +22,7 @@
 
 <script>
 export default {
+   props:['registerShow'],
       data(){return{
         email:'',
         password:'',

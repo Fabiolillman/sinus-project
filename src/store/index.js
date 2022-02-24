@@ -20,8 +20,15 @@ export default new Vuex.Store({
   actions: {
     async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
-      console.log(response)
+      API.savetoken(response.data.token)
+      // const checkLogin= true
     },
+
+    // async checksLogin(){
+    //   API.savetoken(response.data.token)
+    // },
+
+
 
     async register(context,credentials){
       const response = await API.register(

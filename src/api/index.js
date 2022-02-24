@@ -1,4 +1,83 @@
 
+    import axios from 'axios'
+   // SEND TOKEN TO HEADER TO REMAIN LOGGED IN
+//    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+    axios.defaults.baseURL = 'http://localhost:5000/api'
+    
+    // KINGA'S KOD
+
+export async function getItemFromId(itemId) {
+    return await axios.get('/items/'+itemId)
+}
+
+export async function getItemsFromCategory(category) {
+    return await axios.get('/items/?category='+category)
+}
+
+
+   //  FABIO'S KOD 
+
+    export async function login(email,password){
+        try{
+        const response = await axios.post('/auth/',{email,password})
+        return response
+       
+
+        }catch(error){
+            console.log("LOGIN ERROR STUFF")
+        }
+            }
+
+    export async function savetoken(token){
+        try{
+        axios.defaults.headers.common['Authorization'] = token;
+        console.log("It works")
+        const loggedUser = Boolean
+        console.log(loggedUser)
+        }catch(error){
+            console.log("LOGIN ERROR STUFF")
+        }
+            }
+    
+    
+
+     export async function register(email,password,name,city,street,zip){
+        try{
+         const response = await axios.post('/register/',{
+             email,password,name,address:{city,street,zip}
+            })
+         return response
+        
+         }catch(error){
+                    console.log("REGISTER ERROR STUFF")
+        }
+             }
+
+
+
+
+
+    //   export async function register(email,password){
+    //             try{
+    //             const response = await axios.post('/register/',{email,password})
+    //             return response
+        
+    //             }catch(error){
+    //                 console.log("ERROR STUFF")
+    //             }
+    //                 }
+            
+    
+
+    // export async function getRegister(email,password){
+    //       const request = axios.get('http://localhost:5000/api/auth/', {
+    //               email,password
+    //             })
+    //             return request
+    //           }        
+
+
+
 // export async function getProductList(){
 // const request = await fetch('http://localhost:5000/api/items/', 
 // {
@@ -32,62 +111,3 @@
     //         // console.log(data.products)
     //         return data
     //         }
-
-    import axios from 'axios'
-
-    axios.defaults.baseURL = 'http://localhost:5000/api'
-    
-    export async function login(email,password){
-        try{
-        const response = await axios.post('/auth/',{email,password})
-        return response
-
-        }catch(error){
-            console.log("LOGIN ERROR STUFF")
-        }
-            }
-    
-
-     export async function register(email,password,name,city,street,zip){
-        try{
-         const response = await axios.post('/register/',{
-             email,password,name,address:{city,street,zip}
-            })
-         return response
-        
-         }catch(error){
-                    console.log("REGISTER ERROR STUFF")
-        }
-             }
-
-
-
-    //   export async function register(email,password){
-    //             try{
-    //             const response = await axios.post('/register/',{email,password})
-    //             return response
-        
-    //             }catch(error){
-    //                 console.log("ERROR STUFF")
-    //             }
-    //                 }
-            
-    
-
-    // export async function getRegister(email,password){
-    //       const request = axios.get('http://localhost:5000/api/auth/', {
-    //               email,password
-    //             })
-    //             return request
-    //           }        
-
-
-
-export async function getItemFromId(itemId) {
-    return await axios.get('/items/'+itemId)
-}
-
-export async function getItemsFromCategory(category) {
-    return await axios.get('/items/?category='+category)
-}
-

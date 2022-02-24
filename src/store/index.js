@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import * as API from '../api'
+
 import * as API from  '@/api/index.js'
+
 
 Vue.use(Vuex)
 
@@ -13,11 +16,20 @@ export default new Vuex.Store({
   mutations: {
     
   },
+
+  actions: {  
+    async login(context,credentials){
+    const response = await API.login(credentials.email, credentials.password)
+    console.log(response)
+  },
+    
+
   actions: {
     async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
       console.log(response)
     },
+
     async register(context,credentials){
       const response = await API.register(
         credentials.email, 

@@ -42,16 +42,17 @@ export default {
   width: 100%;
   height: 700px;
   background-repeat: no-repeat;
-    /* background-attachment: fixed; */
   background-position: center;
   background-size: 100% 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
 } 
+
 .north-skate{
   width: 200px;
 }
+
 .collection{
   color: white;
   font-family: 'Raleway', sans-serif;
@@ -60,7 +61,7 @@ export default {
   
 }
 .shopNow{
-   color: white;
+  color: white;
   font-family: 'Raleway', sans-serif;
   padding-top: 5rem;
   font-size: 40px;
@@ -69,7 +70,7 @@ export default {
   
 }
 .text{
-   display: flex;
+  display: flex;
   flex-direction: column;
 
 }

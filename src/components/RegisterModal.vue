@@ -8,8 +8,6 @@
           <input type="password" v-model="password">
          <label for="">Name</label>
           <input type="text" v-model="name">
-           <label for="">Adress</label>
-          <input type="text" v-model="address">
            <label for="">City</label>
           <input type="text" v-model="city">
            <label for="">Street</label>
@@ -27,7 +25,6 @@ export default {
         email:'',
         password:'',
         name:'',
-        address:'',
         city:'',
         street:'',
         zip:'',
@@ -40,7 +37,6 @@ methods:{
             email:this.email, 
             password:this.password,
             name:this.name, 
-            address:this.address,
             city:this.city, 
             street:this.street,
             zip:this.zip, 

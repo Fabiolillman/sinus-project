@@ -2,6 +2,7 @@
     <div class="single-product-page-main">
       <div class="sales">MEGA SALE 30% OFF</div>
       <header>
+        <Header/>
           <!-- <Cart v-if="cartShow"/> -->
           <!-- <Login /> -->
         <a href="">Go back</a>
@@ -59,10 +60,11 @@
 // import Login from '../components/LoginModal.vue'
 // import Register from '../components/RegisterModal.vue'
 import Footer from '@/components/Footer'
-
+import Header from '../components/Header.vue'
 export default {
   components: {
     Footer, 
+    Header,
     // Login, 
     // Cart,
     // Register

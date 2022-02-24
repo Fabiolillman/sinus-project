@@ -66,6 +66,7 @@ div.footer-layout {
 
 h3 {
     text-transform: uppercase; 
+    margin-top: 1rem;
 }
 
 li {

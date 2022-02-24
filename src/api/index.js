@@ -48,7 +48,7 @@
             }
     
 
-     export async function register(email,password,name,city,street,zip){
+    export async function register(email,password,name,city,street,zip){
         try{
          const response = await axios.post('/register/',{
              email,password,name,address:{city,street,zip}
@@ -59,6 +59,21 @@
                     console.log("REGISTER ERROR STUFF")
         }
              }
+
+
+
+    // export async function itemlist(title,price,category,shortDesc){
+    //     try{
+    //         const response = await axios.get('/items/?page=1',{
+    //           title,price,category,shortDesc
+    //         })
+    //         return response
+    //     }catch(error){
+
+    //     }
+
+
+    // }
 
 
 

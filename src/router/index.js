@@ -2,7 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 
+<<<<<<< HEAD
 // import Payment from '../views/Payment.vue'
+=======
+//import Payment from '../views/Payment.vue'
+>>>>>>> 1ab33f792fd27b76320b875059733f5c4188a9d8
 import Checkout from '../views/Checkout.vue'
 
 import ProductPage from '../views/ProductPage.vue'

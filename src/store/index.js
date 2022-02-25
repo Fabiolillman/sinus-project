@@ -3,9 +3,6 @@ import Vuex from 'vuex'
 
 import * as API from '../api'
 
-
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({

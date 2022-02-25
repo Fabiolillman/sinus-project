@@ -44,11 +44,20 @@
               <a href="">M</a>
               <a href="">L</a>
               <a href="">XL</a>
-               <a href="">XXL</a>
+                <a href="">XXL</a>
                </div>
               </div>
           </aside>
-          <aside class="product-list"></aside>
+          <aside>
+              <div class="products">
+                   <div class="product-list">
+              <a v-for="product in products" :key="product.id" href="">
+                  {{product.title}}
+                </a>
+                </div>
+                <button @click="nextProducts">Next</button>
+                </div>
+          </aside>
           </div>
       </main>
       <a href="" class="back-to-top">Back to top</a>
@@ -58,7 +67,26 @@
 
 <script>
 export default {
-
+    computed: {
+        products() {
+            return this.$store.state.allProducts
+        }
+    },
+    mounted:
+        function () {
+            this.$store.dispatch('fetchProducts', 1)
+        }
+    ,
+    methods: {
+        nextProducts() {
+            this.$store.dispatch('fetchProducts', this.$store.state.currentPage+1)
+        },
+        getImage(productId) {
+            return this.$store.getters.productImage(productId)
+            // console.log(productId);
+            // return 'http://localhost:5000/images/sinus-hoodie-ocean.png'
+        }
+    }
 }
 </script>
 
@@ -140,9 +168,8 @@ margin-top: 1rem;
     
 }
 .product-list{
-    height: 400px;
-    width:60%;
-   
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     /* background: yellow; */
 }
 .top-main{

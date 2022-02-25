@@ -10,7 +10,7 @@
       
       <div class="icons">
           <img src="../assets/ICON-User.png" alt="">
-              <p>Account</p>
+              <p @click="loginShow = !loginShow" >Account</p>
               <img src="../assets/ICON-Pin.png" alt="">
               <p>Find us!</p>
               <img src="../assets/ICON-Info.png" alt="">
@@ -20,9 +20,14 @@
               <img src="../assets/ICON-_.png" alt="">
               <p>Help</p>
               <img src="../assets/ICON-Cart.png" alt="">
-              <p>Cart</p>      
+              <p @click="cartShow = !cartShow" >Cart</p>      
       </div>
-      
+          <Cart v-if="cartShow"/>
+          <Login 
+           v-if="loginShow"
+           @click="loginShow=!loginShow"
+          :loginShow="loginShow"
+          />
     </div>
     <div class="categories">
             <a href="">Women</a>
@@ -43,12 +48,23 @@
 
 <script>
 // @ is an alias to /src
-
+import Cart from '../components/Cart.vue'
+import Login from '../components/LoginModal.vue'
+// import Register from '../components/RegisterModal.vue'
 
 export default {
   components: {
 
+    Login, 
+    Cart,
+    // Register
+ 
   },
+
+  data(){return{
+    loginShow:false,
+    cartShow:false
+  }}
  
 
 

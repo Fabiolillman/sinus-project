@@ -112,7 +112,7 @@ header{
     justify-content: space-between;
     justify-items: stretch;
    
-    justify-content: end;
+    justify-content: flex-end;
     margin-left: 5rem;
 }
 p{

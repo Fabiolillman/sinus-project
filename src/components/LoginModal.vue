@@ -15,12 +15,13 @@
               <a href="">Forgot Password?</a>
           </div>
           <button>Login</button>
+         
            <a href="#" @click="registerShow=!registerShow">Don't have an account? Register here!</a>
       </form>
-      <RegisterModal
+       <RegisterModal
        v-if="registerShow" 
        @click="registerShow=!registerShow"
-       :loginShow="registerShow"
+       :registerShow="registerShow"
       />
   </div>
 </template>
@@ -29,11 +30,13 @@
 import RegisterModal from '../components/RegisterModal.vue'
 export default {
     props:['loginShow'],
-    computed:{RegisterModal},
+     components: {
+    RegisterModal
+  },
 data(){return{
     email:'',
     password: '',
-    registerShow: true
+    registerShow: false
 }},
 
 methods:{
@@ -112,6 +115,8 @@ input[type=checkbox]{
 button{
     margin-top: 1rem;
     height: 2.5rem;
+      background: black;
+    color: white;
 }
 
 form>a{

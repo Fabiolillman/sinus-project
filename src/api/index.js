@@ -32,7 +32,7 @@ export async function getItemsFromCategory(category) {
         try{
         axios.defaults.headers.common['Authorization'] = token;
         console.log("It works")
-        const loggedUser = Boolean
+        const loggedUser = true
         console.log(loggedUser)
         }catch(error){
             console.log("LOGIN ERROR STUFF")

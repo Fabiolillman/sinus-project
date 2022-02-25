@@ -51,6 +51,12 @@ export default new Vuex.Store({
     async fetchItemsFromCategory(context, category) {
       const response = await API.getItemsFromCategory(category)
       console.log(response);
+    },
+    async fetchProducts(context, page) {
+      const response = await API.getProducts(page)
+      console.log(JSON.stringify(response.data));
+      this.state.allProducts = response.data
+      this.state.currentPage = page
     }
       // async getProduct(){
     //   const response = await getProductList()

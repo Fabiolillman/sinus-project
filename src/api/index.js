@@ -14,6 +14,11 @@ export async function getItemsFromCategory(category) {
     return await axios.get('/items/?category='+category)
 }
 
+export async function getProducts(page) {
+    return await axios.get('/items?page='+page)
+}
+
+
 
    //  FABIO'S KOD 
 

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 import * as API from '../api'
 
 Vue.use(Vuex)
@@ -8,6 +7,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
+    currentCategoryProducts: [],    // for Checkout.vue
+    cart: []
+  },
+  mutations: {
+    saveProducts(state, products){
+      for(let product of products){
+        state.productsList.push(product)
+        Vue.set(state.products, product.id, product)
+      }
+    },
+    addToCart(state, product){
+      const savedToCart = state.cart.find((itemInCart) => itemInCart.id === product.id)
+      if(savedToCart){
+        savedToCart.amount++
+      }else{
+        state.cart.push(product)
+      }
     currentCategoryProducts: [],
     cart: []
   },
@@ -71,6 +87,8 @@ export default new Vuex.Store({
       this.state.allProducts = response.data
       this.state.currentPage = page
     },
+    addToCart({ commit }, product){
+      commit("addToCart", product)
     async addToCart(context,product) {
       this.commit('saveProductInCart', product)
     }

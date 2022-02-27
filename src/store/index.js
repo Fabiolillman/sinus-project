@@ -3,9 +3,6 @@ import Vuex from 'vuex'
 
 import * as API from '../api'
 
-
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -20,8 +17,17 @@ export default new Vuex.Store({
   actions: {
     async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
-      console.log(response)
+      API.savetoken(response.data.token)
+      console.log(response.data.token)
+      // const checkLogin = response.data.token
+      // return checkLogin
     },
+
+    // async checksLogin(){
+      // API.savetoken(token)
+    // },
+
+
 
     async register(context,credentials){
       const response = await API.register(
@@ -34,6 +40,7 @@ export default new Vuex.Store({
         )
       console.log(response)
     },
+
 	async fetchItemFromId(context, itemId) {
       const response = await API.getItemFromId(itemId)
       this.state.currentProduct = response.data.post
@@ -41,6 +48,12 @@ export default new Vuex.Store({
     async fetchItemsFromCategory(context, category) {
       const response = await API.getItemsFromCategory(category)
       console.log(response);
+    },
+    async fetchProducts(context, page) {
+      const response = await API.getProducts(page)
+      console.log(JSON.stringify(response.data));
+      this.state.allProducts = response.data
+      this.state.currentPage = page
     }
       // async getProduct(){
     //   const response = await getProductList()

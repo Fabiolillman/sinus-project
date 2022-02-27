@@ -2,27 +2,34 @@
   <section>
       <BackButton/>
       <img class="logo" src="@/assets/sinus-logo-landscape.svg" alt="Sinus Logo">
-      <CheckoutCard/>
+      <CheckoutCard :writeInfo="writeInfo" />
   </section>
 </template>
 
 <script>
 
 import BackButton from "../components/BackButton.vue"
-import CheckoutCard from "../components/CheckoutCard"
+import CheckoutCard from "../components/CheckoutCard.vue"
 export default {
     components: {
         BackButton,
         CheckoutCard
     },
-    data(){
-        return{
-            email: '',
-            name: '',
-            address: '',
-            zipcode: '',
-            state: '',
-            phone: '',
+    computed: {
+        writeInfo(){
+            const customer = {
+                email: '',
+                name: '',
+                address: '',
+                zipcode: '',
+                state: '',
+                phone: ''
+            };
+            if (this.$store.state.user.currentCustomer){
+                return this.$store.state.user.currentCustomer;
+            }else{
+                return customer
+            }
         }
     },
 }

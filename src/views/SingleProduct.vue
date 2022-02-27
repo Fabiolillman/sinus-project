@@ -70,7 +70,7 @@ export default {
     // Register
   },
   data() { return {
-    colors: ["Grey","Blue","Purple","Red","Green"]
+    colors: ["Ash","Fire","Green","Ocean","Purple"]
   }},
   computed: {
     product() {
@@ -79,17 +79,15 @@ export default {
     imagePath() {
       if (this.$store.state.currentProduct == null)
         return null
-
-      return require('@/assets/'+this.$store.state.currentProduct.imgFile)
+      return "http://localhost:5000/images/"+this.$store.state.currentProduct.imgFile
     }
   },
   mounted: 
     function () {
-      console.log("mounted")
-      this.$store.dispatch('fetchItemFromId', 87)
+      this.$store.dispatch('fetchItemFromId', 122)
       this.$store.dispatch('fetchItemsFromCategory', 'hoodie')
     }
-};
+}
 </script>
 
 <style scoped>

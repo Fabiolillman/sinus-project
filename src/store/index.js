@@ -24,6 +24,25 @@ export default new Vuex.Store({
       }else{
         state.cart.push(product)
       }
+    currentCategoryProducts: [],
+    cart: []
+  },
+  mutations: {
+    saveItemFromId(state, item) {
+      state.currentProduct = item
+    },
+    saveItemsFromCategory(state, items) {
+      state.currentCategoryProducts = []
+      state.currentCategoryProducts.push(...items)
+    },
+    saveProductInCart(state, product){
+      const inCart = state.cart.find(cartItem => cartItem.id == product.id)
+      if(inCart){
+        inCart.amount++
+      }else{
+        state.cart.push({id:product.id, amount:1})
+      }
+      alert("Product added to cart!")
     }
   },
 
@@ -56,11 +75,11 @@ export default new Vuex.Store({
 
 	async fetchItemFromId(context, itemId) {
       const response = await API.getItemFromId(itemId)
-      this.state.currentProduct = response.data.post
+      context.commit('saveItemFromId', response.data.post)
     },
     async fetchItemsFromCategory(context, category) {
       const response = await API.getItemsFromCategory(category)
-      console.log(response);
+      context.commit('saveItemsFromCategory', response.data)
     },
     async fetchProducts(context, page) {
       const response = await API.getProducts(page)
@@ -70,6 +89,8 @@ export default new Vuex.Store({
     },
     addToCart({ commit }, product){
       commit("addToCart", product)
+    async addToCart(context,product) {
+      this.commit('saveProductInCart', product)
     }
       // async getProduct(){
     //   const response = await getProductList()

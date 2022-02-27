@@ -48,7 +48,7 @@
 
 <script>
 // @ is an alias to /src
-import Cart from '../components/Cart.vue'
+import Cart from '../views/Cart.vue'
 import Login from '../components/LoginModal.vue'
 // import Register from '../components/RegisterModal.vue'
 

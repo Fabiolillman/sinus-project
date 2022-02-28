@@ -70,6 +70,9 @@ export default new Vuex.Store({
       this.state.allProducts = response.data
       this.state.currentPage = page
     },
+    // addToCart({ commit }, product){
+    //   commit("addToCart", product)
+    // },
     async addToCart(context,product) {
       this.commit('saveProductInCart', product)
     }

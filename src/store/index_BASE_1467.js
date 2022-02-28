@@ -7,18 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
-<<<<<<< HEAD
-<<<<<<< HEAD
-    currentCategoryProducts: [],
-    currentToken:"",
-    
-=======
-=======
-
-    currentToken:"",
-    
-
->>>>>>> 5c86e81c7a6dc08cd425f0052a6cab0704c59c7e
+<<<<<<<<< Temporary merge branch 1
     currentCategoryProducts: [],    // for Checkout.vue
     cart: []
   },
@@ -38,11 +27,11 @@ export default new Vuex.Store({
       }
     currentCategoryProducts: [],
     cart: []
-<<<<<<< HEAD
->>>>>>> 53d0f1b0b943eefc3e955e689857feb2e572850c
-=======
-
->>>>>>> 5c86e81c7a6dc08cd425f0052a6cab0704c59c7e
+=========
+    currentCategoryProducts: [],
+    currentToken:"",
+    
+>>>>>>>>> Temporary merge branch 2
   },
   mutations: {
     saveItemFromId(state, item) {

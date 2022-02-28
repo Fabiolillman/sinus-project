@@ -77,14 +77,18 @@ export default {
       return this.$store.state.currentProduct
     },
     imagePath() {
-      if (this.$store.state.currentProduct == null)
-        return null
-      return "http://localhost:5000/images/"+this.$store.state.currentProduct.imgFile
+      if (this.$store.state.currentProduct == null){
+ return null
+      } else{
+return "http://localhost:5000/images/"+this.$store.state.currentProduct.imgFile
+      }
+       
+      
     }
   },
   mounted: 
     function () {
-      this.$store.dispatch('fetchItemFromId', 122)
+      this.$store.dispatch('fetchItemFromId', 162)
       this.$store.dispatch('fetchItemsFromCategory', 'hoodie')
     }
 }

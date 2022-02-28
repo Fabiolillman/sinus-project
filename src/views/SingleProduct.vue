@@ -109,7 +109,7 @@ return "http://localhost:5000/images/"+this.$store.state.currentProduct.imgFile
       
     }
   },
-  mounted: 
+  mounted: {
     function () {
       this.$store.dispatch('fetchItemFromId', 162)
       this.$store.dispatch('fetchItemsFromCategory', 'hoodie')
@@ -122,21 +122,9 @@ return "http://localhost:5000/images/"+this.$store.state.currentProduct.imgFile
     },
   },
   methods: {
-    changeCategoryColor(itemId) {
-      let item = this.$store.state.currentCategoryProducts.find(
-        (item) => item.id == itemId
-      );
-      this.$store.state.currentProduct = item;
-    },
-    addToCart(product) {
-      this.$store.dispatch('addToCart',product)
-
-    }
+   
   },
-  mounted: function () {
-    this.$store.dispatch("fetchItemFromId", this.$route.params.productId);
-    this.$store.dispatch("fetchItemsFromCategory", this.$route.params.category);
-  }
+
 };
 </script>
 

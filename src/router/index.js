@@ -1,17 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
-
-// import Payment from '../views/Payment.vue'
-
 //import Payment from '../views/Payment.vue'
-
 import Checkout from '../views/Checkout.vue'
-
 import ProductPage from '../views/ProductPage.vue'
 import SingleProduct from '../views/SingleProduct.vue'
-import Cart from '../components/Cart.vue'
+import Cart from '../views/Cart.vue'
 
 
 Vue.use(VueRouter)
@@ -22,13 +16,18 @@ const routes = [
     name: 'Home',
     component: Home
   },
-    {
-    path: '/SingleProduct',
+  {
+    path: '/SingleProduct/:category/:productId',
     name: 'SingleProduct',
     component: SingleProduct
   },
+  // {
+  //   path: '/SingleProduct/:id',
+  //   name: 'SingleProduct',
+  //   component: SingleProduct
+  // },
   {
-    path: '/Cart',
+    path: '/cart',
     name: 'Cart',
     component: Cart
   },
@@ -46,14 +45,12 @@ const routes = [
     path: '/ProductPage',
     name: 'ProductPage',
     component: ProductPage
-
   },
   {
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
-
 ]
 
 const router = new VueRouter({

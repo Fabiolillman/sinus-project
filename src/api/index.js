@@ -7,15 +7,15 @@
     // KINGA'S KOD
 
 export async function getItemFromId(itemId) {
-    return await axios.get('/items/'+itemId)
+    return await axios.get('/items/'+ itemId)
 }
 
 export async function getItemsFromCategory(category) {
-    return await axios.get('/items/?category='+category)
+    return await axios.get('/items/?category='+ category)
 }
 
 export async function getProducts(page) {
-    return await axios.get('/items?page='+page)
+    return await axios.get('/items?page='+ page)
 }
 
 

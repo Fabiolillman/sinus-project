@@ -7,6 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
+
+    currentToken:"",
+    
+
     currentCategoryProducts: [],    // for Checkout.vue
     cart: []
   },
@@ -26,6 +30,7 @@ export default new Vuex.Store({
       }
     currentCategoryProducts: [],
     cart: []
+
   },
   mutations: {
     saveItemFromId(state, item) {
@@ -50,6 +55,7 @@ export default new Vuex.Store({
     async login(context,credentials){
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
+      this.state.currentToken = response.data.token
       console.log(response.data.token)
       // const checkLogin = response.data.token
       // return checkLogin

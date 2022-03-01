@@ -9,7 +9,8 @@ export default new Vuex.Store({
     currentProduct: null,
     currentToken:"", 
     currentCategoryProducts: [],    // for Checkout.vue
-    cart: []
+    cart: [],
+    allProducts: []
   },
  
     

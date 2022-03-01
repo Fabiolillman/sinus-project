@@ -97,7 +97,7 @@ export default new Vuex.Store({
 
     addToCart({ commit }, product){
       commit("addToCart", product)
-  },
+    },
   },
 
   modules: {

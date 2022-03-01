@@ -5,7 +5,7 @@
      <div class="sales">MEGA SALE 30% OFF</div>
       <header>
           
-          <div class="link-pathing">    
+        <div class="link-pathing">    
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>|
        <router-link to="/">Home</router-link> |

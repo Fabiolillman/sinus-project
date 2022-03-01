@@ -18,7 +18,10 @@ export async function getProducts(page) {
     return await axios.get('/items?page='+ page)
 }
 
-
+    // EDITHA' KOD
+export async function getProductList() {
+    return await axios.get('/items')
+}
 
    //  FABIO'S KOD 
 

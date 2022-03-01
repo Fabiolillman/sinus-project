@@ -51,7 +51,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async login(context,credentials){
+    async login(context, credentials){
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
       this.state.currentToken = response.data.token
@@ -66,7 +66,7 @@ export default new Vuex.Store({
 
 
 
-    async register(context,credentials){
+    async register(context, credentials){
       const response = await API.register(
         credentials.email, 
         credentials.password,
@@ -78,7 +78,7 @@ export default new Vuex.Store({
       console.log(response)
     },
 
-	async fetchItemFromId(context, itemId) {
+    async fetchItemFromId(context, itemId) {
       const response = await API.getItemFromId(itemId)
       context.commit('saveItemFromId', response.data.post)
     },

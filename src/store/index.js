@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     currentProduct: null,
     currentCategoryProducts: [],
-    cart: []
+    products: [],
+    cart: [],
   },
   mutations: {
     saveItemFromId(state, item) {
@@ -18,8 +19,8 @@ export default new Vuex.Store({
       state.currentCategoryProducts = []
       state.currentCategoryProducts.push(...items)
     },
-    saveProductInCart(state, product){
-      const inCart = state.cart.find(cartItem => cartItem.id == product.id)
+    saveProductInCart(state, product){  
+      const inCart = state.cart.find(cartItem => cartItem.id === product.id)
       if(inCart){
         inCart.amount++
       }else{
@@ -30,7 +31,7 @@ export default new Vuex.Store({
   },
 
   actions: {
-    async login(context,credentials){
+    async login(context, credentials){
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
       console.log(response.data.token)
@@ -44,7 +45,7 @@ export default new Vuex.Store({
 
 
 
-    async register(context,credentials){
+    async register(context, credentials){
       const response = await API.register(
         credentials.email, 
         credentials.password,
@@ -56,7 +57,7 @@ export default new Vuex.Store({
       console.log(response)
     },
 
-	async fetchItemFromId(context, itemId) {
+    async fetchItemFromId(context, itemId) {
       const response = await API.getItemFromId(itemId)
       context.commit('saveItemFromId', response.data.post)
     },
@@ -70,10 +71,7 @@ export default new Vuex.Store({
       this.state.allProducts = response.data
       this.state.currentPage = page
     },
-    // addToCart({ commit }, product){
-    //   commit("addToCart", product)
-    // },
-    async addToCart(context,product) {
+    async addToCart(context, product) {
       this.commit('saveProductInCart', product)
     }
       // async getProduct(){

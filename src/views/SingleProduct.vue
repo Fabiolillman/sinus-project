@@ -7,9 +7,9 @@
       <!-- <Login /> -->
       <a href="">Go back</a>
       <div class="link-pathing">
-        <router-link to="/">Sinus</router-link> /
-        <router-link to="/">Women</router-link>/
-        <router-link to="/">Clothing</router-link> /
+        <router-link to="/">Sinus</router-link> / 
+        <router-link to="/">Women</router-link> / 
+        <router-link to="/">Clothing</router-link> / 
         <router-link to="/hoodies">Hoodies</router-link>
       </div>
       <div class="line-break"></div>

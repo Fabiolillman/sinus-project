@@ -7,10 +7,10 @@
       <!-- <Login /> -->
       <a href="">Go back</a>
       <div class="link-pathing">
-        <router-link to="/">Sinus</router-link> / 
-        <router-link to="/">Women</router-link> / 
-        <router-link to="/">Clothing</router-link> / 
-        <router-link to="/hoodies">Hoodies</router-link>
+        <router-link to="/">Sinus</router-link> /
+        <router-link to="/">Women</router-link>/
+        <router-link to="/">Clothing</router-link> /
+        <router-link to="/hoodies">Products</router-link>
       </div>
       <div class="line-break"></div>
     </header>
@@ -225,9 +225,10 @@ select {
 .top-main {
   margin: auto;
 }
-.filter-box {
+.filter-box:hover {
   /* height: 13rem; */
   /* border-bottom: 2px solid black; */
+  cursor: pointer;
 }
 .filter-box h2 {
   padding-bottom: 0.8rem;
@@ -301,7 +302,7 @@ a:visited {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  min-width: 35rem;
+  min-width: 25rem;
   text-transform: uppercase;
   font-size: 1.2rem;
   font-family: 'Raleway', sans-serif;

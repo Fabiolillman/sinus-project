@@ -7,20 +7,40 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
-    currentCategoryProducts: [],
-    products: [],
-    cart: [],
+    currentToken:"", 
+    currentCategoryProducts: [],    // for Checkout.vue
+    cart: []
   },
+ 
+    
   mutations: {
+    saveProducts(state, products){
+      for(let product of products){
+        state.productsList.push(product)
+        Vue.set(state.products, product.id, product)
+      }
+    },
+
+    addToCart(state, product){
+      const savedToCart = state.cart.find((itemInCart) => itemInCart.id === product.id)
+      if(savedToCart){
+        savedToCart.amount++
+      }else{
+        state.cart.push(product)
+      }
+  },
+
     saveItemFromId(state, item) {
       state.currentProduct = item
     },
+
     saveItemsFromCategory(state, items) {
       state.currentCategoryProducts = []
       state.currentCategoryProducts.push(...items)
     },
-    saveProductInCart(state, product){  
-      const inCart = state.cart.find(cartItem => cartItem.id === product.id)
+
+    saveProductInCart(state, product){
+      const inCart = state.cart.find(cartItem => cartItem.id == product.id)
       if(inCart){
         inCart.amount++
       }else{
@@ -34,6 +54,7 @@ export default new Vuex.Store({
     async login(context, credentials){
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
+      this.state.currentToken = response.data.token
       console.log(response.data.token)
       // const checkLogin = response.data.token
       // return checkLogin
@@ -61,37 +82,24 @@ export default new Vuex.Store({
       const response = await API.getItemFromId(itemId)
       context.commit('saveItemFromId', response.data.post)
     },
+
     async fetchItemsFromCategory(context, category) {
       const response = await API.getItemsFromCategory(category)
       context.commit('saveItemsFromCategory', response.data)
     },
+
     async fetchProducts(context, page) {
       const response = await API.getProducts(page)
       console.log(JSON.stringify(response.data));
       this.state.allProducts = response.data
       this.state.currentPage = page
     },
-    async addToCart(context, product) {
-      this.commit('saveProductInCart', product)
-    }
-      // async getProduct(){
-    //   const response = await getProductList()
-    //   // context.commit('saveStuff', response)
-    //   console.log(response.products)
-  
-    // },
-    // async login(context,credentials){
-    //   const response = await getLogin(credentials.email, credentials.password)
-    //   // context.commit('saveStuff', response)
-    //   console.log(response)
-  
-    // },
 
-    // async register(context,credentials){
-    //   const response = await getLogin(credentials.email, credentials.password)
-    //   // context.commit('saveStuff', response)
-    //   console.log(response)
+    addToCart({ commit }, product){
+      commit("addToCart", product)
   },
+  },
+
   modules: {
   }
-})
+  })

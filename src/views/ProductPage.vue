@@ -53,7 +53,12 @@
                    <div class="product-list">
               <a v-for="product in products" :key="product.id" href="">
                   {{product.title}}
-                </a>
+                 <!-- <router-link :to="{ path: '/SingleProduct/'+product.id, params: {category: product.category}}">Sinus</router-link> / -->
+                 <router-link :to ="'/SingleProduct/'+product.category+'/'+product.id">
+                    <!-- <img src="@/assets/sinus-hoodie-ash.png" alt="xxx"> -->
+                    SINUS
+                 </router-link> 
+                 </a>
                 </div>
                 <button @click="nextProducts">Next</button>
                 </div>

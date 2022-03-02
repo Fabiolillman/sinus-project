@@ -10,8 +10,12 @@ export default new Vuex.Store({
     currentToken:null, 
     currentCategoryProducts: [],    // for Checkout.vue
     cart: [],
+
     user: {},
     loggedUser:true,
+
+    allProducts: []
+
   },
  
     
@@ -111,7 +115,7 @@ export default new Vuex.Store({
 
     addToCart({ commit }, product){
       commit("addToCart", product)
-  },
+    },
   },
 
   modules: {

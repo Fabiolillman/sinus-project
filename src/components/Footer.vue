@@ -53,18 +53,16 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
-
 div {
     font-family: 'Raleway', sans-serif;
     background-color: #C1B0A9;
     text-align: left;
 }
 
-div.footer-layout {
+.footer-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0px 256px;
+    padding: 10px 0px 10px 140px;
 }
 
 h3 {
@@ -76,11 +74,12 @@ li {
     list-style: none;
 }
 
-ul {
+ul:hover {
     padding: 0px;
+    cursor: pointer;
 }
 
-div.media-icons-position {
+.media-icons-position {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -90,10 +89,10 @@ img.media-icon-size {
     width: 32px;   
 }
 
-div.copy-right {
+.copy-right {
     text-align: center;
-    padding: 5px;
-    font-size: 12px; 
+    padding: 2px ;
+    font-size: 16px;
 }
 
 </style>

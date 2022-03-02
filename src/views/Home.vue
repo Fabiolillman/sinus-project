@@ -1,6 +1,6 @@
 <template>
 <div class="homepage">
-  <Header/>
+  <PageHeader/>
 
   <main>
     <div :style="{backgroundImage:'url(https://s3-eu-west-1.amazonaws.com/press.visitsweden.com/original_images/david-becker-58X3XfxxevU-unsplash-CMSTemplate.jpg)'}" class="hero">
@@ -20,11 +20,11 @@
 <script>
 
 
-import Header from "../components/Header.vue"
+import PageHeader from "../components/PageHeader.vue"
 import Footer from "../components/Footer.vue"
 export default {
   components: {
-    Header,
+    PageHeader,
     Footer
 
   },

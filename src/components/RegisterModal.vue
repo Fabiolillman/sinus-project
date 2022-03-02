@@ -16,7 +16,7 @@
            <label for="">Zip</label>
             <input type="text" v-model="zip">
           <button href="#">Register</button>
-          <a href="" v-if="registerShow" @click="registerShow=!registerShow">Back to sign in</a>
+          <!-- <a href="" v-if="registerShow" @click="registerShow=!registerShow">Back to sign in</a> -->
       </form>
   </div>
 </template>
@@ -82,6 +82,7 @@ label{
 }
 
 input{
+    border-left: 0.1px solid black;
 height: 2.5rem;
 outline: none;
 }

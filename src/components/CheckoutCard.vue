@@ -46,7 +46,7 @@
             <a href="#">
                 <img src="@/assets/swish.png" alt="Swish">
             </a>
-            <button @click="calling">BIG SEND</button>
+
         </div>
       </div>
 </template>

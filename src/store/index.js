@@ -11,9 +11,7 @@ export default new Vuex.Store({
     currentCategoryProducts: [],    // for Checkout.vue
     cart: [],
     user: {},
-    loggedUser:false,
-    testing: "Testing call"
-    // userInfo: null,
+    loggedUser:true,
   },
  
     
@@ -55,20 +53,14 @@ export default new Vuex.Store({
 
     storeUser(state, userInfo) {
       state.user = userInfo;
-      console.log("Stored User Info")
-      console.log(userInfo)
     },
 
     checkLoggedUser(state, loggedIn) {
       state.loggedUser = loggedIn;
-      // console.log("Stored User Info")
-      // console.log(userInfo)
     },
 
     storeToken(state, usedToken) {
       state.currentToken = usedToken;
-      console.log(this.state.currentToken)
-      console.log("Stored Token")
     },
   },
 
@@ -77,23 +69,19 @@ export default new Vuex.Store({
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
       this.state.currentToken = response.data.token
-      console.log(this.state.currentToken)
       context.commit('storeToken', response.data.token)
-      // const checkLogin = response.data.token
-      // return checkLogin
     },
 
     async checksLogin(context){
       await API.savetoken(this.state.currentToken)
       const response = await API.getUserInfo()
       context.commit('storeUser', response.data)
-      context.commit('checkLoggedUser', true)
-      console.log(response)
+      context.commit('checkLoggedUser', false)
     },
 
 
     async register(context, credentials){
-      const response = await API.register(
+      await API.register(
         credentials.email, 
         credentials.password,
         credentials.name,
@@ -101,7 +89,7 @@ export default new Vuex.Store({
         credentials.street,
         credentials.zip
         )
-      console.log(response)
+      // console.log(response)
     },
 
     async fetchItemFromId(context, itemId) {

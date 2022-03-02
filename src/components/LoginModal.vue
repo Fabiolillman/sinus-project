@@ -14,7 +14,8 @@
               </div>
               <a href="">Forgot Password?</a>
           </div>
-          <button >Login</button>
+          <button>Login</button>
+          <!-- @click="$emit('click')" -->
          
            <a href="#" @click="registerShow=!registerShow">Don't have an account? Register here!</a>
       </form>
@@ -83,6 +84,7 @@ label{
 }
 
 input{
+    border-top:0.1px solid black;
 height: 2.5rem;
 outline: none;
 }

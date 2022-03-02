@@ -7,9 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
-    currentToken:"", 
+    currentToken:null, 
     currentCategoryProducts: [],    // for Checkout.vue
-    cart: []
+    cart: [],
+    user: {},
+    loggedUser:false,
+    testing: "Testing call"
+    // userInfo: null,
   },
  
     
@@ -47,7 +51,25 @@ export default new Vuex.Store({
         state.cart.push({id:product.id, amount:1})
       }
       alert("Product added to cart!")
-    }
+    },
+
+    storeUser(state, userInfo) {
+      state.user = userInfo;
+      console.log("Stored User Info")
+      console.log(userInfo)
+    },
+
+    checkLoggedUser(state, loggedIn) {
+      state.loggedUser = loggedIn;
+      // console.log("Stored User Info")
+      // console.log(userInfo)
+    },
+
+    storeToken(state, usedToken) {
+      state.currentToken = usedToken;
+      console.log(this.state.currentToken)
+      console.log("Stored Token")
+    },
   },
 
   actions: {
@@ -55,15 +77,19 @@ export default new Vuex.Store({
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
       this.state.currentToken = response.data.token
-      console.log(response.data.token)
+      console.log(this.state.currentToken)
+      context.commit('storeToken', response.data.token)
       // const checkLogin = response.data.token
       // return checkLogin
     },
 
-    // async checksLogin(){
-      // API.savetoken(token)
-    // },
-
+    async checksLogin(context){
+      await API.savetoken(this.state.currentToken)
+      const response = await API.getUserInfo()
+      context.commit('storeUser', response.data)
+      context.commit('checkLoggedUser', true)
+      console.log(response)
+    },
 
 
     async register(context, credentials){

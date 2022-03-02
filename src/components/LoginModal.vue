@@ -14,7 +14,7 @@
               </div>
               <a href="">Forgot Password?</a>
           </div>
-          <button>Login</button>
+          <button >Login</button>
          
            <a href="#" @click="registerShow=!registerShow">Don't have an account? Register here!</a>
       </form>
@@ -45,8 +45,10 @@ methods:{
             console.log("It's hidden rn")
         }
     },
-    login(){
-        this.$store.dispatch('login',{email:this.email, password:this.password} )
+    async login(){
+       await this.$store.dispatch('login',{email:this.email, password:this.password} )
+        this.$store.dispatch('checksLogin')
+        
     }
 }
 }

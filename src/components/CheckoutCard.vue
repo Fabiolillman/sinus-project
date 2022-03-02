@@ -4,33 +4,33 @@
         <div class="container">
             <form class="checkout-form">
                 <div class="email">
-                    <label for="email">Email:</label>
-                    <input type="email" v-model="email">
+                    <label for="email">Email: </label>
+                    <input type="email" v-model="user.email">
                 </div>
 
                 <div class="fullname">
                     <label for="name">Name: </label>
-                    <input type="text" v-model="name">
+                    <input type="text" v-model="user.name">
                 </div>
 
-                <div class="address">
+                <!-- <div class="address">
                     <label for="address">Address: </label>
-                    <input type="text" v-model="address">
-                </div>
+                    <input type="text" v-model="user.address">
+                </div> -->
                 <div class="zipcodestate">
                     <div class="zipcode">
-                        <label for="zipcode">Zip code: </label>
-                        <input type="text" v-model="zipcode">
+                        <label for="zipcode">City: </label>
+                        <input type="text" v-model="user.address.zip">
                     </div>
                     <div class="state">
-                        <label for="state">State: </label>
-                        <input type="text" v-model="state">
+                        <label for="state">Street:  </label>
+                        <input type="text" v-model="user.address.street">
                     </div>
                 </div>
 
                 <div class="phone-number">
-                    <label for="phone">Phone: </label>
-                    <input type="tel" v-model="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    <label for="phone">Zip: </label>
+                    <input type="tel" v-model="user.address.city" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
                 </div>
             </form>
         </div>
@@ -46,20 +46,69 @@
             <a href="#">
                 <img src="@/assets/swish.png" alt="Swish">
             </a>
+            <button @click="calling">BIG SEND</button>
         </div>
       </div>
 </template>
 
 <script>
 export default {
+    async beforeMount(){
+       if(this.currentUserToken!==null){
+       try{
+       this.user= await this.$store.state.user;
+       console.log(this.currentUserToken)
+        } catch(error){
+            console.log("testing")
+        }
+        } 
+        
+    },
+      computed:{
+            currentUserData(){
+                if(this.currentUserToken!==null){
+                console.log(this.$store.state.user)
+              
+              return this.$store.state.user
+              
+                } else{
+              return ""
+                }
+            },  
+             currentUserToken(){
+                // if(this.$store.state.user==!null){
+              return this.$store.state.currentToken
+                // } else{
+            //   return null
+                // }
+            },           
+          },
+    methods:{
+     calling(){
+         if(this.currentUserToken!==null){
+       console.log("hello before testing")
+        //  console.log(this.currentUserData)
+         console.log(this.$store.state.currentToken)
+         } else{
+             console.log("It didn't work")
+             console.log(this.currentUserToken)
+         }
+     }
+    },
+
     data(){
         return{
-            email: '',
-            name: '',
-            address: '',
-            zipcode: '',
-            state: '',
-            phone: ''
+ user:{
+  email: "", 
+  password : "",
+  name: "",
+  address: {
+    city: "",
+    street: "",
+    zip: "",
+  }
+}
+
         }
     },
 }

@@ -10,7 +10,7 @@
       
       <div class="icons">
           <img src="../assets/ICON-User.png" alt="">
-              <p @click="loginShow = !loginShow" >Account</p>
+              <p @click="loginShow = !loginShow" v-if="checkedLoggedIn" >Account</p>
               <img src="../assets/ICON-Pin.png" alt="">
               <p>Find us!</p>
               <img src="../assets/ICON-Info.png" alt="">
@@ -40,7 +40,12 @@
                 <input class="searchbar" type="text" placeholder="Enter keyword" name="search">
                 <button class="search" type="sumbit">    <img class="looking-glass" src="../assets/ICON-Lookingglass.png" alt=""></button>
             </form>
+            <p>OVER HERE</p>
+             <p>{{currentUserData.email}}</p>
+            <p>UNDER HERE</p>
         </div>
+        <button @click="calling">HELLO</button>
+       
     </header>
 
   </div>
@@ -61,10 +66,24 @@ export default {
  
   },
 
+
   data(){return{
     loginShow:false,
     cartShow:false
-  }}
+  }},
+
+  computed:{
+                checkedLoggedIn(){
+                if(this.currentUserToken!==null){
+                console.log(this.$store.state.user)
+              
+              return this.$store.state.user
+              
+                } else{
+              return ""
+                }
+            }, 
+  }
  
 
 
@@ -111,7 +130,6 @@ header{
     flex-direction: row;
     justify-content: space-between;
     justify-items: stretch;
-   
     justify-content: flex-end;
     margin-left: 5rem;
 }

@@ -3,9 +3,13 @@
     <div class="sales">MEGA SALE 30% OFF</div>
     <header>
       <PageHeader />
-      <!-- <Cart v-if="cartShow"/> -->
-      <!-- <Login /> -->
-      <a href="">Go back</a>
+      <div>
+        <p class="nav" @click="previousProduct">
+          <router-link to="/ProductPage"
+            >&lt;&lt;&lt; PREVIOUS PAGE</router-link
+          >
+        </p>
+      </div>
       <div class="link-pathing">
         <router-link to="/">Sinus</router-link> /
         <router-link to="/">Women</router-link>/
@@ -22,30 +26,26 @@
         <aside class="filter-columns">
           <div class="product-main" v-if="product">
             <h2>{{ product.category }}</h2>
-            <img class="image-style" @click="addToCart(product)" src="@/assets/ICON-Cart.png" alt="Cart" />
+            <img class="image-style" @click="addToCart(product)" src="@/assets/ICON-Cart.png" alt="Cart"/>
           </div>
-          <div class="short-desc" v-if="product">
-            {{ product.shortDesc }}
+          <div class="short-desc" v-if="product"> {{ product.shortDesc }}
           </div>
-          <div class="price-layout" v-if="product">
-            {{ product.price }}.00 kr
+          <div class="price-layout" v-if="product"> {{ product.price }}.00 kr
           </div>
           <div class="star-layout">
-            <div v-for="star in 5" :key="star" >
-            <img class="star-style" src="@/assets/full-star.png" alt="Star" />
+            <div v-for="star in 5" :key="star">
+              <img class="star-style" src="@/assets/full-star.png" alt="Star" />
             </div>
           </div>
           <div class="filter-box filter-box-color">
             <h2>Description</h2>
             <div class="long-desc" v-if="product">
               {{ product.longDesc }}
-              </div>
+            </div>
           </div>
           <div v-if="product" class="filter-box filter-box-color">
             <h2>Color</h2>
-            <a @click="changeCategoryColor(color.id)"
-              v-for="color in colors"
-              :key="color.id">
+            <a @click="changeCategoryColor(color.id)" v-for="color in colors" :key="color.id">
               {{ color.title }}</a>
             <!-- <router-link
               v-for="color in colorsx"
@@ -65,7 +65,6 @@
             </div>
           </div>
         </aside>
-        <!-- <aside class="product-list"></aside> -->
       </div>
     </main>
     <Footer />
@@ -74,36 +73,29 @@
 
 
 <script>
-// import Cart from '../components/Cart.vue'
-// import Login from '../components/LoginModal.vue'
-// import Register from '../components/RegisterModal.vue'
 import Footer from "@/components/Footer";
 import PageHeader from "../components/PageHeader.vue";
 export default {
   components: {
     Footer,
     PageHeader,
-    // Login,
-    // Cart,
-    // Register
   },
   data() {
-    return {
-    };
+    return {};
   },
-  props: [
-    'category'
-  ],
+  props: ["category"],
   computed: {
     product() {
-      return this.$store.state.currentProduct
+      return this.$store.state.currentProduct;
     },
     imagePath() {
-      return "http://localhost:5000/images/" +
+      return (
+        "http://localhost:5000/images/" +
         this.$store.state.currentProduct.imgFile
+      );
     },
     colors() {
-      return this.$store.state.currentCategoryProducts
+      return this.$store.state.currentCategoryProducts;
     },
   },
   methods: {
@@ -114,13 +106,17 @@ export default {
       this.$store.state.currentProduct = item;
     },
     addToCart(product) {
-      this.$store.dispatch('addToCart',product)
-    }
+      this.$store.dispatch("addToCart", product);
+    },
+    previousProduct() {
+      this.$store.dispatch("fetchProducts", this.$store.state.currentPage + -1);
+    },
   },
+
   mounted: function () {
     this.$store.dispatch("fetchItemFromId", this.$route.params.productId);
     this.$store.dispatch("fetchItemsFromCategory", this.$route.params.category);
-  }
+  },
 };
 </script>
 
@@ -132,7 +128,7 @@ export default {
 }
 
 .single-product-page-main {
-  max-width: 90rem;
+  width: 100%;
   background: #eadfd5;
   margin: auto;
   text-align: center;
@@ -215,6 +211,7 @@ select {
 .filter-columns {
   width: 60%;
   max-width: 15rem;
+  font-family: "Raleway", sans-serif;
 }
 
 .product-list {
@@ -225,18 +222,18 @@ select {
 .top-main {
   margin: auto;
 }
+
 .filter-box:hover {
-  /* height: 13rem; */
-  /* border-bottom: 2px solid black; */
   cursor: pointer;
 }
+
 .filter-box h2 {
   padding-bottom: 0.8rem;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .filter-box-color {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   text-align: start;
   display: flex;
   flex-direction: column;
@@ -245,7 +242,6 @@ select {
 .long-desc {
   display: flex;
   font-size: 1.1rem;
-  /* font-family: 'Raleway', sans-serif; */
   margin: 0 0 20px 0;
 }
 
@@ -278,9 +274,10 @@ a:visited {
   column-gap: 10px;
   row-gap: 10px;
 }
+
 .short-desc {
   display: flex;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 1.2rem;
 }
 
@@ -292,7 +289,7 @@ a:visited {
 }
 
 .link-pathing {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   display: flex;
   justify-content: center;
   gap: 2.2rem;
@@ -305,7 +302,7 @@ a:visited {
   min-width: 25rem;
   text-transform: uppercase;
   font-size: 1.2rem;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 .star-layout {
@@ -319,7 +316,7 @@ a:visited {
   display: flex;
   margin: 10px 0 10px 0;
   font-size: 1.6rem;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: italic;
 }
 
@@ -329,4 +326,14 @@ a:visited {
   display: flex;
 }
 
+.nav {
+  width: 15%;
+  background-color: lightgray;
+  color: white;
+  margin: 20px 40px;
+  padding: 0.6rem;
+  border-radius: 80px 30px 30px 80px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
 </style>

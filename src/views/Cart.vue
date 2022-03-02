@@ -1,19 +1,27 @@
 <template>
 
     <div class="main-body">
-        <PageHeader/>
-        <main>
+        <PageHeader />
+        <div>
              
             <div class="cart">
-                <CartSummary/>
-                
+                <CartSummary />
+                <!-- <button class="big-button">ITEM IN CART</button> -->
                 <div class="checkout">
-                <h5>Checkout Section</h5>
-                
+                    <h5>Checkout Section</h5>
+                    <!-- <form class="promo-code-wrapper">
+                        <label for="promo-code">Have a promo code?</label>
+                        <input type="text" placeholder="" >
+                        <button type="submit">APPLY</button>
+                    </form>
+                    <p>Subtotal <span>{{product.price * product.amount}}</span> kr</p>
+                    <p>Delivery <span>{{}}</span></p>
+                    <p class="big-label">TOTAL <span>{{total}}</span></p>
+                    <button class="big-button">CHECK OUT</button> -->
                 </div>
              </div>
         
-        </main>
+        </div>
         <Footer/>
     </div>
 </template>
@@ -31,7 +39,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&display=swap');
 .main-body{
     width: 100%;
@@ -43,11 +51,11 @@ export default {
     flex-direction: column;
     justify-content: center;
 
+}
     h2, h3, label, input{
         font-family: 'Raleway', sans-serif;
         color: #221d17;
     }
-}
 
 .cart{
     display: flex;
@@ -57,14 +65,12 @@ export default {
     
 }
 
+.big-button{
+    background: #478516;
+    padding: 1rem 2rem;
+    color: #fff;
+    border: 1px solid #478516;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 </style>
 
-<!-- <form action="promo-code-wrapper">
-                    <label for="promo-code">Have a promo code?</label>
-                    <input type="text" placeholder="" >
-                    <button type="submit">APPLY</button>
-                </form>
-                <p>Subtotal <span>{{product.price * product.amount}}</span> kr</p>
-                <p>Delivery <span>{{}}</span></p>
-                <p class="big-label">TOTAL <span>{{total}}</span></p>
-                <button>CHECK OUT</button> -->

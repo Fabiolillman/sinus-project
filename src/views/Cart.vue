@@ -9,12 +9,12 @@
                 <!-- <button class="big-button">ITEM IN CART</button> -->
                 <div class="checkout">
                     <h5>Checkout Section</h5>
-                    <!-- <form class="promo-code-wrapper">
+                    <form class="promo-code-wrapper" @submit.prevent="promoCodeSubmit">
                         <label for="promo-code">Have a promo code?</label>
-                        <input type="text" placeholder="" >
+                        <input type="text" placeholder="Promo Code">
                         <button type="submit">APPLY</button>
                     </form>
-                    <p>Subtotal <span>{{product.price * product.amount}}</span> kr</p>
+                    <!-- <p>Subtotal <span>{{product.price * product.amount}}</span> kr</p>
                     <p>Delivery <span>{{}}</span></p>
                     <p class="big-label">TOTAL <span>{{total}}</span></p>
                     <button class="big-button">CHECK OUT</button> -->

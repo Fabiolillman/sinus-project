@@ -4,17 +4,23 @@ import * as API from '../api'
 
 Vue.use(Vuex)
 
+const cart = localStorage.getItem("sinus-cart") ? JSON.parse(localStorage.getItem("sinus-cart")) : []
+
 export default new Vuex.Store({
   state: {
     currentProduct: null,
     currentToken:"", 
     currentCategoryProducts: [],    // for Checkout.vue
-    cart: [],
-    allProducts: []
+    cart: cart,
+    // cart: [],
+    allProducts: [],
+    productsList: [],
+    products: {}
   },
  
     
   mutations: {
+    
     saveProducts(state, products){
       for(let product of products){
         state.productsList.push(product)
@@ -45,9 +51,15 @@ export default new Vuex.Store({
       if(inCart){
         inCart.amount++
       }else{
-        state.cart.push({id:product.id, amount:1})
+        state.cart.push({id: product.id, amount: 1})
       }
       alert("Product added to cart!")
+      localStorage.setItem("sinus-cart", JSON.stringify(state.cart))
+    },
+
+    updateCartItem(state, {id, amount}){
+      const inCart = state.cart.find(cartItem => cartItem.id == id)
+      inCart.amount = amount
     }
   },
 
@@ -97,10 +109,28 @@ export default new Vuex.Store({
     },
 
     addToCart({ commit }, product){
-      commit("addToCart", product)
+      commit("saveProductInCart", product)
     },
+
+    updateCart({commit}, {id, amount}){
+      commit("updateCartItem", {id, amount})
+    }
   },
 
+  getters: {
+    cart(state){
+      return state.cart.map(cartItem => ({
+        id: cartItem.id,
+        title: state.products[cartItem.id].title,
+        imgFile: state.products[cartItem.id].imgFile,
+        amount: cartItem.amount
+      }))
+    },
+
+    getProductsByCategory: state => category => state.productsList.filter(product => product.category == category)
+  },
   modules: {
   }
   })
+
+ 

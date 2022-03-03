@@ -9,8 +9,17 @@
         </div>
       
       <div class="icons">
+          <form action="/" v-if="!checkedLoggedIn">
+              <input type=hidden > 
+              <input type=submit value="Sign Out" class="sign-out-btn">
+              </form>
           <img src="../assets/ICON-User.png" alt="">
-              <p @click="loginShow = !loginShow" >Account</p>
+ 
+              <p @click="loginShow = !loginShow" v-if="checkedLoggedIn">Account</p>
+              <p v-if="!checkedLoggedIn" class="username">{{currentUserData.name}}</p>
+            
+              
+              
               <img src="../assets/ICON-Pin.png" alt="">
               <p>Find us!</p>
               <img src="../assets/ICON-Info.png" alt="">
@@ -40,7 +49,10 @@
                 <input class="searchbar" type="text" placeholder="Enter keyword" name="search">
                 <button class="search" type="sumbit">    <img class="looking-glass" src="../assets/ICON-Lookingglass.png" alt=""></button>
             </form>
+         
         </div>
+        <!-- <button @click="calling">HELLO</button> -->
+       
     </header>
 
   </div>
@@ -61,10 +73,31 @@ export default {
  
   },
 
+
   data(){return{
     loginShow:false,
     cartShow:false
-  }}
+  }},
+
+  computed:{
+                checkedLoggedIn(){   
+                  console.log("this is " + this.$store.state.loggedUser)
+                  return this.$store.state.loggedUser     
+            }, 
+              currentUserData(){      
+              return this.$store.state.user       
+            }, 
+  },
+
+  methods:{
+  checkedLoggedIns(){   
+                  console.log("Button click " + this.$store.state.loggedUser)
+            }, 
+            signOut(){   
+              this.$store.state.loggedUser = true 
+              this.$store.state.user={} 
+            }, 
+  }
  
 
 
@@ -103,6 +136,33 @@ header{
     
 }
 
+.sign-out-btn{
+  border-radius: 5px;
+  width: 4rem;
+  height: 2rem;
+  margin-right:1rem;
+  background: rgba(99, 65, 65, 0);
+  border: 2px solid black;
+}
+
+
+
+.sign-out-btn:hover{
+  box-shadow: 0px 0px 6px 0px #000000;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.icons p:hover{
+transition: 0.3s;
+text-decoration: underline;
+cursor: pointer;
+}
+
+.icons p.username{
+  cursor: default;
+  text-decoration: none;
+}
+
 .icons{
     margin: 1rem;
    width: 70%;
@@ -111,7 +171,6 @@ header{
     flex-direction: row;
     justify-content: space-between;
     justify-items: stretch;
-   
     justify-content: flex-end;
     margin-left: 5rem;
 }

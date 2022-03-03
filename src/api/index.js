@@ -1,7 +1,5 @@
 
     import axios from 'axios'
-   // SEND TOKEN TO HEADER TO REMAIN LOGGED IN
-//    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
     axios.defaults.baseURL = 'http://localhost:5000/api'
     
     // KINGA'S KOD
@@ -29,21 +27,27 @@ export async function getProductList() {
         try{
         const response = await axios.post('/auth/',{email,password})
         return response
-       
 
         }catch(error){
             console.log("LOGIN ERROR STUFF")
         }
             }
+    
+    export async function getUserInfo(){
+         try{
+        const response = await axios.get('/me')
+        return response
+               
+        }catch(error){
+                    console.log("GetUserInfo ERROR STUFF")
+        }
+             }
 
     export async function savetoken(token){
-        try{
-        axios.defaults.headers.common['Authorization'] = token;
-        console.log("It works")
-        const loggedUser = true
-        console.log(loggedUser)
+        try{    
+        axios.defaults.headers.common['Authorization'] = "Bearer " + token;    
         }catch(error){
-            console.log("LOGIN ERROR STUFF")
+            console.log("SaveToken ERROR STUFF")
         }
             }
     

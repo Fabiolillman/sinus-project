@@ -7,9 +7,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currentProduct: null,
-    currentToken:"", 
+    currentToken:null, 
     currentCategoryProducts: [],    // for Checkout.vue
-    cart: []
+    cart: [],
+
+    user: {},
+    loggedUser:true,
+
+    allProducts: []
+
   },
  
     
@@ -47,7 +53,19 @@ export default new Vuex.Store({
         state.cart.push({id:product.id, amount:1})
       }
       alert("Product added to cart!")
-    }
+    },
+
+    storeUser(state, userInfo) {
+      state.user = userInfo;
+    },
+
+    checkLoggedUser(state, loggedIn) {
+      state.loggedUser = loggedIn;
+    },
+
+    storeToken(state, usedToken) {
+      state.currentToken = usedToken;
+    },
   },
 
   actions: {
@@ -55,19 +73,19 @@ export default new Vuex.Store({
       const response = await API.login(credentials.email, credentials.password)
       API.savetoken(response.data.token)
       this.state.currentToken = response.data.token
-      console.log(response.data.token)
-      // const checkLogin = response.data.token
-      // return checkLogin
+      context.commit('storeToken', response.data.token)
     },
 
-    // async checksLogin(){
-      // API.savetoken(token)
-    // },
-
+    async checksLogin(context){
+      await API.savetoken(this.state.currentToken)
+      const response = await API.getUserInfo()
+      context.commit('storeUser', response.data)
+      context.commit('checkLoggedUser', false)
+    },
 
 
     async register(context, credentials){
-      const response = await API.register(
+      await API.register(
         credentials.email, 
         credentials.password,
         credentials.name,
@@ -75,7 +93,7 @@ export default new Vuex.Store({
         credentials.street,
         credentials.zip
         )
-      console.log(response)
+      // console.log(response)
     },
 
     async fetchItemFromId(context, itemId) {
@@ -97,7 +115,7 @@ export default new Vuex.Store({
 
     addToCart({ commit }, product){
       commit("addToCart", product)
-  },
+    },
   },
 
   modules: {

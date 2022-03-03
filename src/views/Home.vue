@@ -8,7 +8,7 @@
     <img src="../assets/sinus-skateboard-northern-lights.png" alt="" class="north-skate">
     <div class="text">
       <h3 class="collection">ENVIRONMENTAL <br> COLLECTION</h3>
-      <a href="" class="shopNow">Shop now!></a>
+      <router-link to="/ProductPage" class="shopNow">Shop now!></router-link>
     </div>
     </div>
   </main>

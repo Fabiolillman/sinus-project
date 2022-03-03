@@ -5,6 +5,7 @@
       <div class="mainframe">
 
         <div class="sinuscard">
+          
           <img src="../assets/sinus-logo 1.png" alt="">
         </div>
       
@@ -29,7 +30,7 @@
               <img src="../assets/ICON-_.png" alt="">
               <p>Help</p>
               <img src="../assets/ICON-Cart.png" alt="">
-              <p @click="cartShow = !cartShow" >Cart</p>      
+              <router-link to="/Cart">Cart</router-link>      
       </div>
           <Cart v-if="cartShow"/>
           <Login 
@@ -39,11 +40,10 @@
           />
     </div>
     <div class="categories">
-            <a href="">Women</a>
-            <a href="">Men</a>
-            <a href="">Kids</a>
-            <a href="">What's new</a>
-            <a href="">Skateboard</a>
+            <router-link to="/">Home</router-link>
+            <router-link to="/ProductPage">Our products</router-link>
+            <router-link to="/ProductPage">What's new</router-link>
+            <router-link to="/about">About us</router-link>
 
             <form class="searchwindow">
                 <input class="searchbar" type="text" placeholder="Enter keyword" name="search">

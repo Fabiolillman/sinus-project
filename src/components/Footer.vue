@@ -59,10 +59,10 @@ div {
     text-align: left;
 }
 
-div.footer-layout {
+.footer-layout {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    padding: 0px 256px;
+    padding: 10px 0px 10px 140px;
 }
 
 h3 {
@@ -74,11 +74,12 @@ li {
     list-style: none;
 }
 
-ul {
+ul:hover {
     padding: 0px;
+    cursor: pointer;
 }
 
-div.media-icons-position {
+.media-icons-position {
     display: flex;
     align-items: center;
     gap: 16px;
@@ -88,10 +89,10 @@ img.media-icon-size {
     width: 32px;   
 }
 
-div.copy-right {
+.copy-right {
     text-align: center;
-    padding: 5px;
-    font-size: 12px; 
+    padding: 2px ;
+    font-size: 16px;
 }
 
 </style>

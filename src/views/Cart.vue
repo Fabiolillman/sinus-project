@@ -1,12 +1,14 @@
 <template>
 
     <div class="main-body">
-        <PageHeader />
-        <div>
-             
+        <PageHeader/> 
             <div class="cart">
+                
                 <CartSummary />
-                <!-- <button class="big-button">ITEM IN CART</button> -->
+               
+                <div class="cart-total">
+                    <h5>SHOPPING CART</h5>
+                </div>
                 <div class="checkout">
                     <h5>Checkout Section</h5>
                     <form class="promo-code-wrapper" @submit.prevent="promoCodeSubmit">
@@ -18,10 +20,23 @@
                     <p>Delivery <span>{{}}</span></p>
                     <p class="big-label">TOTAL <span>{{total}}</span></p>
                     <button class="big-button">CHECK OUT</button> -->
+                    
+                    <div class="promocode">
+                        <p>Have a promo code?</p>
+                        <input type="text"> <button>Apply</button>
+                    </div>
+                    <div class="subtotal">
+                        <p>Subtotal:</p>
+                        <p>Delivery: FREE</p>
+                    </div>
+
+                    <div class="total">
+                        <p>TOTAL:</p>
+                    </div>
+                     <button class="big-button">ITEM IN CART</button>
                 </div>
              </div>
         
-        </div>
         <Footer/>
     </div>
 </template>
@@ -46,23 +61,40 @@ export default {
     height: 100%;
     background: #EADFD5;
     color: #000;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: center;
 
 }
-    h2, h3, label, input{
+    h5, h2, h3, label, p, input{
         font-family: 'Raleway', sans-serif;
         color: #221d17;
     }
 
+    h5{
+        font-size: 30px;
+    }
+
 .cart{
+    height: 35rem;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-evenly;
     margin-left: 10rem;
     
+}
+.checkout{
+    width: 15rem;
+    height: 25rem;
+    background-color: #B5A183;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 2rem;
+
+}
+.promocode, .subtotal, .total{
+    margin-left: 25px;
 }
 
 .big-button{
@@ -71,6 +103,11 @@ export default {
     color: #fff;
     border: 1px solid #478516;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 10rem;
+    height: 3rem;
+    margin-bottom: 20px;
+    margin-left: 40px;
+    
 }
 </style>
 

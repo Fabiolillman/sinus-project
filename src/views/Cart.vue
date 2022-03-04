@@ -1,56 +1,54 @@
 <template>
-
     <div class="main-body">
         <PageHeader/> 
             <div class="cart">
-                
                 <CartSummary />
-               
-                <div class="cart-total">
-                    <h5>SHOPPING CART</h5>
-                </div>
                 <div class="checkout">
-                    <h5>Checkout Section</h5>
-                    <form class="promo-code-wrapper" @submit.prevent="promoCodeSubmit">
+                    <form class="promocode" @submit.prevent="promoCodeSubmit">
                         <label for="promo-code">Have a promo code?</label>
                         <input type="text" placeholder="Promo Code">
                         <button type="submit">APPLY</button>
                     </form>
-                    <!-- <p>Subtotal <span>{{product.price * product.amount}}</span> kr</p>
-                    <p>Delivery <span>{{}}</span></p>
-                    <p class="big-label">TOTAL <span>{{total}}</span></p>
-                    <button class="big-button">CHECK OUT</button> -->
+                    <p class="subtotal">Subtotal: <span>{{ subTotalPrice }}</span> kr</p>
+                    <p class="subtotal">Delivery: <span>FREE</span></p>
+                    <p class="total">TOTAL <span>{{ total }}</span> kr</p>
+                    <button class="big-button" @click="$router.push('checkout')">CHECK OUT</button>
                     
-                    <div class="promocode">
+                    <!-- <div class="promocode">
                         <p>Have a promo code?</p>
                         <input type="text"> <button>Apply</button>
-                    </div>
-                    <div class="subtotal">
-                        <p>Subtotal:</p>
+                    </div> -->
+                    <!-- <div class="subtotal">
+                        <p :model="subtotal" >Subtotal: </p>
                         <p>Delivery: FREE</p>
                     </div>
 
-                    <div class="total">
-                        <p>TOTAL:</p>
+                    <div :model="total" class="total">
+                        <p>TOTAL: </p>
                     </div>
-                     <button class="big-button">ITEM IN CART</button>
+                     <button class="big-button" @click="checkout">CHECKOUT</button> -->
                 </div>
              </div>
         
-        <Footer/>
+        <!-- <Footer/> -->
     </div>
 </template>
 
 <script>
 import PageHeader from "../components/PageHeader.vue"
 import CartSummary from "../components/CartSummary.vue"
-import Footer from "../components/Footer.vue"
+// import Footer from "../components/Footer.vue"
 export default {
     components: {
         PageHeader,
         CartSummary,
-        Footer
+        // Footer
     },
+    computed: {
+        subTotalPrice(){
+          return this.$store.getters.subTotalPrice
+        }
+    }
 }
 </script>
 

@@ -2,27 +2,19 @@
   <div class="cartItems">
   <main>
     <div class="cartsummary">
-    <img class="product-image" v-if="product" :src="imagePath" alt="Product image">
     
-    <section class="cartinfo">
-      <h2 v-if="product">{{ product.category }}</h2>
-      <hr />
-      <p v-if="product">{{ product.title }}</p>
-      <hr />
-      <p v-if="product">{{ product.price }}.00 kr</p>
-      <hr />
-      
-      <button @click="addToCart(product)">Add to cart</button>
-      <ul>
-        <li v-for="cartItem in cart" :key="cartItem.id">
-          {{ cartItem.amount }}x {{ cartItem.title }}
+        <section class="cartInfo" v-for="cartItem in cart" :key="cartItem.id">
+          <img class="product-image" :src="'http://localhost:5000/images/' + cartItem.imgFile" alt=":cartItem.title">
+
+          <h2>{{ cartItem.category }}</h2>
+          <hr>
+          <p>{{ cartItem.title }}</p>
+          <hr>
+          <p>{{ cartItem.amount }}</p>
+          <hr>
           <button class="cartbutton" @click="increase(cartItem)">+</button>
           <button class="cartbutton" @click="decrease(cartItem)">-</button>
-        </li>
-      </ul>
-      <p>{{cart}}</p>
-    </section>
-    
+        </section>
     </div>
   </main>
   </div>
@@ -33,14 +25,6 @@ export default {
     computed: {
         product() {
             return this.$store.state.currentProduct
-        },
-    
-        imagePath() {
-            return "http://localhost:5000/images/" +
-                this.$store.state.currentProduct.imgFile
-        },
-        colors() {
-            return this.$store.state.currentCategoryProducts
         },
 
         products(){

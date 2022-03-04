@@ -109,7 +109,7 @@ export default {
       this.$store.dispatch("fetchProducts", this.$store.state.currentPage + 1);
     },
     previousProducts() {
-      this.$store.dispatch("fetchProducts", this.$store.state.currentPage + -1);
+      this.$store.dispatch("fetchProducts", this.$store.state.currentPage - 1);
     },
     getImage(productId) {
       return this.$store.getters.productImage(productId);

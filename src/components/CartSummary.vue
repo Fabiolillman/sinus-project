@@ -1,16 +1,20 @@
 <template>
   <div class="cartItems">
   <main>
-    <div class="cartsummary">     
-    <img class="product-image" v-if="product" :src="imagePath" alt="Product image">
+    <div class="cartsummary">
     
-    <section class="cartinfo">
-    <h2 v-if="product">{{product.category}}</h2>
-    <p v-if="product">{{product.title}}</p>
-    <p v-if="product">{{product.price}}.00 kr</p>
+        <section class="cartInfo" v-for="cartItem in cart" :key="cartItem.id">
+          <img class="product-image" :src="'http://localhost:5000/images/' + cartItem.imgFile" alt=":cartItem.title">
 
-    </section>
-    
+          <h2>{{ cartItem.category }}</h2>
+          <hr>
+          <p>{{ cartItem.title }}</p>
+          <hr>
+          <p>{{ cartItem.amount }}</p>
+          <hr>
+          <button class="cartbutton" @click="increase(cartItem)">+</button>
+          <button class="cartbutton" @click="decrease(cartItem)">-</button>
+        </section>
     </div>
   </main>
   </div>
@@ -18,25 +22,38 @@
 
 <script>
 export default {
-    props: ['product, category'],
     computed: {
         product() {
             return this.$store.state.currentProduct
         },
-        
-        imagePath() {
-            return "http://localhost:5000/images/" +
-                this.$store.state.currentProduct.imgFile
+
+        products(){
+            return this.$store.state.productsList
         },
-        colors() {
-            return this.$store.state.currentCategoryProducts
+
+        cart(){
+          return this.$store.getters.cart
         },
+
+        filteredProducts(){
+          return this.$store.getters.getgetProductsByCategory("cap")
+        }
     },
+
     methods: {
         addTocart(product){
             this.$store.dispatch('addToCart', product)
+        },
+
+        increase(cartItem){
+            this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount + 1})
+        },
+
+        decrease(cartItem){
+            this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount - 1})
         }
     }
+  
 }
 </script>
 
@@ -55,7 +72,6 @@ export default {
   margin: 40px;
   max-width: 15rem;
   max-height: 25rem;
-  
 }
 
 .cartinfo{
@@ -74,6 +90,11 @@ p{
   color: #221d17;
   font-style: bold;
   font-size: 30px;
-  
 }
+
+.cartbutton{
+  margin: 10px;
+  padding: 10px;
+}
+
 </style>

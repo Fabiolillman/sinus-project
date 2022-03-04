@@ -4,25 +4,28 @@ import * as API from '../api'
 
 Vue.use(Vuex)
 
+// const cart = localStorage.getItem("sinus-cart") ? JSON.parse(localStorage.getItem("sinus-cart")) : []
+
 export default new Vuex.Store({
   state: {
     currentProduct: null,
     currentToken:null, 
     currentCategoryProducts: [],    // for Checkout.vue
+    // cart: cart,
     cart: [],
-
+    allProducts: [],
+    productsList: [],
+    products: {},
     user: {},
     loggedUser:true,
-
-    allProducts: []
-
   },
  
     
   mutations: {
+    
     saveProducts(state, products){
       for(let product of products){
-        state.productsList.push(product)
+        // state.productsList.push(product)
         Vue.set(state.products, product.id, product)
       }
     },
@@ -50,9 +53,15 @@ export default new Vuex.Store({
       if(inCart){
         inCart.amount++
       }else{
-        state.cart.push({id:product.id, amount:1})
+        state.cart.push({id: product.id, amount: 1})
       }
       alert("Product added to cart!")
+      // localStorage.setItem("sinus-cart", JSON.stringify(state.cart))
+    },
+
+    updateCartItem(state, {id, amount}){
+      const inCart = state.cart.find(cartItem => cartItem.id == id)
+      inCart.amount = amount
     },
 
     storeUser(state, userInfo) {
@@ -111,13 +120,34 @@ export default new Vuex.Store({
       console.log(JSON.stringify(response.data));
       this.state.allProducts = response.data
       this.state.currentPage = page
+      context.commit("saveProducts", response.data)
     },
 
     addToCart({ commit }, product){
-      commit("addToCart", product)
+      commit("saveProductInCart", product)
     },
+
+    updateCart({commit}, {id, amount}){
+      commit("updateCartItem", {id, amount})
+    }
   },
 
+  getters: {
+    cart(state){
+      return state.cart.map(cartItem => ({
+         id: cartItem.id,
+         title: state.products[cartItem.id].title,
+         imgFile: state.products[cartItem.id].imgFile,
+         amount: cartItem.amount,
+         price: state.products[cartItem.id].price,
+         category: state.products[cartItem.id].category
+       }))
+    },
+
+    getProductsByCategory: state => category => state.productsList.filter(product => product.category == category)
+  },
   modules: {
   }
   })
+
+ 

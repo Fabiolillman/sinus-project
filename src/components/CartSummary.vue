@@ -1,7 +1,7 @@
 <template>
   <div class="cartItems">
-  <main>
-    <div class="cartsummary">
+  <!-- <main> -->
+    <!-- <div class="cartsummary"> -->
     
         <section class="cartInfo" v-for="cartItem in cart" :key="cartItem.id">
           <img class="product-image" :src="'http://localhost:5000/images/' + cartItem.imgFile" alt=":cartItem.title">
@@ -12,32 +12,34 @@
           <hr>
           <p>{{ cartItem.amount }}</p>
           <hr>
-          <button class="cartbutton" @click="increase(cartItem)">+</button>
+          <p>{{ cartItem.price * cartItem.amount}}</p>
+          <hr>
           <button class="cartbutton" @click="decrease(cartItem)">-</button>
+          <button class="cartbutton" @click="increase(cartItem)">+</button>
         </section>
-    </div>
-  </main>
+    <!-- </div> -->
+  <!-- </main> -->
   </div>
 </template>
 
 <script>
 export default {
     computed: {
-        product() {
-            return this.$store.state.currentProduct
-        },
+        // product() {
+        //     return this.$store.state.currentProduct
+        // },
 
-        products(){
-            return this.$store.state.productsList
-        },
+        // products(){
+        //     return this.$store.state.productsList
+        // },
 
         cart(){
           return this.$store.getters.cart
         },
 
-        filteredProducts(){
-          return this.$store.getters.getgetProductsByCategory("cap")
-        }
+        // filteredProducts(){
+        //   return this.$store.getters.getgetProductsByCategory("cap")
+        // }
     },
 
     methods: {
@@ -45,12 +47,12 @@ export default {
             this.$store.dispatch('addToCart', product)
         },
 
-        increase(cartItem){
-            this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount + 1})
+        decrease(cartItem){
+          this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount - 1})
         },
 
-        decrease(cartItem){
-            this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount - 1})
+        increase(cartItem){
+          this.$store.dispatch('updateCart', {id: cartItem.id, amount: cartItem.amount + 1})
         }
     }
   
@@ -74,7 +76,7 @@ export default {
   max-height: 25rem;
 }
 
-.cartinfo{
+.cartInfo{
   display: flex;
   flex-direction: column;
   justify-content: center;

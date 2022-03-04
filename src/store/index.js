@@ -144,6 +144,12 @@ export default new Vuex.Store({
        }))
     },
 
+    subTotalPrice(state, getters){
+      return getters.cart.reduce((accumulator, item) => {
+        return accumulator + item.amount * item.price
+      }, 0)
+    },
+
     getProductsByCategory: state => category => state.productsList.filter(product => product.category == category)
   },
   modules: {

@@ -89,6 +89,7 @@ export default {
       return this.$store.state.currentProduct;
     },
     imagePath() {
+      // $TIPS: Move 'http://localhost:5000' to an environment variable
       return (
         "http://localhost:5000/images/" +
         this.$store.state.currentProduct.imgFile
@@ -103,6 +104,7 @@ export default {
       let item = this.$store.state.currentCategoryProducts.find(
         (item) => item.id == itemId
       );
+      // $FEEDBACK: Only mutate store in mutations
       this.$store.state.currentProduct = item;
     },
     addToCart(product) {

@@ -14,6 +14,7 @@ export default {
     components: {
         List
     },
+    // $COMMENT: Unecessary data-function
     data(){
         return{}
     },

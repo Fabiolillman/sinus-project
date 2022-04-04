@@ -3,6 +3,7 @@
   <PageHeader/>
 
   <main>
+    <!-- $COMMENT: Avoid hotlinking images from other hosts unless you control the host -->
     <div :style="{backgroundImage:'url(https://s3-eu-west-1.amazonaws.com/press.visitsweden.com/original_images/david-becker-58X3XfxxevU-unsplash-CMSTemplate.jpg)'}" class="hero">
     
     <img src="../assets/sinus-skateboard-northern-lights.png" alt="" class="north-skate">

@@ -55,6 +55,7 @@ export default new Vuex.Store({
       }else{
         state.cart.push({id: product.id, amount: 1})
       }
+      // $FEEDBACK: Do not use alert
       alert("Product added to cart!")
       // localStorage.setItem("sinus-cart", JSON.stringify(state.cart))
     },
@@ -94,6 +95,7 @@ export default new Vuex.Store({
 
 
     async register(context, credentials){
+      // $COMMENT: Pass object instead of 7 values
       await API.register(
         credentials.email, 
         credentials.password,

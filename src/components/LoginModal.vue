@@ -42,6 +42,7 @@ data(){return{
 
 methods:{
     classadding(){
+      // $QUESTION: Inifinite loop?
         while (this.loginShow==false){
             console.log("It's hidden rn")
         }

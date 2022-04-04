@@ -70,6 +70,7 @@
                     </router-link>
                   </div>
                 </a>
+                <!-- $QUESTION: What is this <div> for? -->
                 <div v-if="products.length % 2 != 0"></div>
                 <div class="previous-layout">
                   <p @click="previousProducts" class="nav">&lt;&lt;&lt; PREVIOUS</p>
